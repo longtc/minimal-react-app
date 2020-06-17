@@ -1,0 +1,13 @@
+{
+  "manifestFileName": "asset-map.json",
+  "publicDir": "build",
+  "publicPath": "/",
+  "publicStaticDir": "build/static",
+  "publicStaticPath": "/static",
+  "publicStaticJsDir": "build/js",
+  "publicStaticCssDir": "build/css",
+  "publicStaticImageDir": "build/image",
+
+  "apiStaging": "https://pokeapi.co/api/v2",
+  "apiProduction": "https://pokeapi.co/api/v2"
+}
