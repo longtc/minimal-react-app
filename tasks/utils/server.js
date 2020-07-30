@@ -4,7 +4,7 @@ const fs = require("fs");
 const path = require("path");
 
 const config = require("../../config.json");
-const { mimeType } = require("./mimeType");
+const { mimeType } = require("./mime-type");
 
 const PORT = 5000;
 const BUILD_PATH = config.publicDir;
