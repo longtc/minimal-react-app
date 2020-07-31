@@ -16,19 +16,19 @@ export const Breadcrumbs = withBreadcrumbs(routeConfig)(({ breadcrumbs }) => {
     return null;
 
   return (
-    <div className="bg-light-grey full flex justify-center pb2">
-      <ul className="bg-transparent full max-width flex justify-start list-reset m0 mt1">
+    <div className="w-full flex justify-center pb-2">
+      <ul className="w-full flex justify-start bg-transparent list-none m-0 mt-1 pl-0">
         {breadcrumbs.map(({
           match,
           breadcrumb,
         }, idx, arr) => (
-          <li key={match.url} className="mr1 relative breadcrump">
+          <li key={match.url} className="mr-1 relative breadcrumb">
             {idx < (arr.length - 1)
               ? <NavLink
-                className="text-decoration-none dark-grey"
+                className="no-underline text-gray"
                 to={match.url}
               >
-                {breadcrumb} /
+                {breadcrumb}
               </NavLink>
               : <span className="black">{breadcrumb}</span>
             }

@@ -1,0 +1,18 @@
+/* purgecss start ignore */
+@import "tailwindcss/base";
+@import "modern-normalize/modern-normalize.css";
+@import "base/margin.css";
+@import "base/multimedia.css";
+@import "base/list.css";
+@import "base/font.css";
+
+
+@import "tailwindcss/components";
+@import "component/modal.css";
+@import "component/loading-indicator.css";
+@import "component/breadcrumb.css";
+/* purgecss end ignore */
+
+
+@import "utility/typography.css";
+@import "tailwindcss/utilities";

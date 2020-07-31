@@ -1,0 +1,8 @@
+.breadcrumb:after {
+  content: " /";
+  @apply text-gray;
+}
+
+.breadcrumb:last-of-type:after {
+  content: ""
+}

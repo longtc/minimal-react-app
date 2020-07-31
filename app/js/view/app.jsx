@@ -2,17 +2,20 @@ import React, { useContext } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import { UserProvider, UserContext } from "../reducer/user/user-context";
+import { DialogProvider } from "../reducer/dialog/dialog-context";
 
 import { routeConfig } from "./routeConfig";
 import { NotFound } from "./page/NotFound/index.jsx";
 
 import { PrivateRoute } from "./component/PrivateRoute.jsx";
-import { Breadcrumbs } from "./component/BreadCrumps.jsx";
+import { Breadcrumbs } from "./component/breadcrumbs.jsx";
 
 export function App() {
   return (
     <UserProvider>
-      <Routers />
+      <DialogProvider>
+        <Routers />
+      </DialogProvider>
     </UserProvider>
   );
 }
@@ -21,7 +24,7 @@ function Routers() {
   const { user } = useContext(UserContext);
 
   return (
-    <div className="full">
+    <div className="w-full max-w-screen-lg px-4">
       <BrowserRouter>
         <Breadcrumbs />
 

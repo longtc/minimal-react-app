@@ -5,6 +5,7 @@ const gulp = require("gulp");
 const postcss = require("postcss");
 const csso = require("postcss-csso");
 const atImport = require("postcss-import");
+const tailwindcss = require("tailwindcss");
 const postcssPresetEnv = require("postcss-preset-env");
 const autoprefixer = require("autoprefixer");
 
@@ -17,6 +18,7 @@ async function compileCss(srcPath) {
 
   const plugins = [
     atImport(),
+    tailwindcss("./tailwind.config.js"),
     postcssPresetEnv({
       browsers: supportBrowsers,
       stage: 3,
@@ -37,7 +39,8 @@ async function compileCss(srcPath) {
     css,
     {
       from: srcPath,
-      map: ENV === DEVELOPMENT, // sourcemap
+      // map: ENV === DEVELOPMENT, // sourcemap
+      map: false, // sourcemap
     }
   );
   // TODO: upgrade to postcss-values-parser@3
@@ -47,7 +50,7 @@ async function compileCss(srcPath) {
 
 gulp.task("css", async () => {
   try {
-    const srcPath = "./app/css/main.css";
+    const srcPath = "./app/css/tailwind.css";
     const css = await compileCss(srcPath);
     const cssFileName = await generateRevisionedAsset(path.basename(srcPath), css);
     global.cssFileName = cssFileName; // this will be used to replace content in `index.html`

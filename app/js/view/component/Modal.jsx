@@ -4,7 +4,7 @@ import { createPortal } from "react-dom";
 const body = document.body;
 
 export function Modal({ isOpen, onClose, className, children, ...rest }) {
-  const classes = ["m-auto border-box p2"];
+  const classes = ["m-auto w-full lg:w-4/5 max-w-4xl bg-white p-4"];
   if (className) classes.push(className);
 
   return isOpen ? (

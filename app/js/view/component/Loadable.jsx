@@ -7,8 +7,8 @@ export function loadable(Component) {
 
   return function Loadable({ ...rest }) {
     return (
-      <div className="bg-light-grey full flex justify-center flex-auto">
-        <div className="bg-transparent full max-width">
+      <div className="w-full flex justify-center flex-auto">
+        <div className="w-full max-w-screen-lg bg-transparent">
           <Suspense fallback={<LoadingIndicator size={64} />}>
             <Component {...rest} />
           </Suspense>
