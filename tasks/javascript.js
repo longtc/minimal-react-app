@@ -146,6 +146,7 @@ function basePlugins({ nomodule = false } = {}) {
           return generate(cssname, filepath);
         },
       },
+      autoModules: false,
       sourceMap: ENV === DEVELOPMENT,
     }),
     resolve(),
