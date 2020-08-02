@@ -5,7 +5,7 @@ import { I18nProvider } from "@lingui/react";
 import defaultCatalog from "../../locales/en-US/messages";
 
 import { AppContextProvider, AppContext } from "../context/app-context";
-import { loadCatalog } from "../reducer/locale/load-catalog";
+import { loadCatalog } from "../store/locale/load-catalog";
 
 import { routeConfig } from "./routeConfig";
 import { NotFound } from "./page/NotFound/index.jsx";

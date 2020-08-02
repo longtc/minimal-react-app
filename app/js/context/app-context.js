@@ -1,8 +1,8 @@
 import React, { createContext } from "react";
 
-import { useLocale } from "../reducer/locale/use-locale";
-import { useUser } from "../reducer/user/use-user";
-import { useDialog } from "../reducer/dialog/use-dialog";
+import { useLocale } from "../store/locale/use-locale";
+import { useUser } from "../store/user/use-user";
+import { useDialog } from "../store/dialog/use-dialog";
 
 export const AppContext = createContext();
 
