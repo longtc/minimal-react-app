@@ -1,15 +1,15 @@
 import React, { useContext, useCallback } from "react";
 
-import { DialogContext } from "../../../reducer/dialog/dialog-context.js";
+import { AppContext } from "../../../context/app-context.js";
 
 import { Modal } from "../Modal.jsx";
 
 // Inject this component into a page that you want to show dialog
 export function DialogMessage() {
 
-  const { dialog, setMessage } = useContext(DialogContext);
+  const { dialog, setDialogMessage } = useContext(AppContext);
 
-  const closeDialog = useCallback(() => setMessage("", ""), [setMessage]);
+  const closeDialog = useCallback(() => setDialogMessage("", ""), [setDialogMessage]);
 
   return (
     <Modal

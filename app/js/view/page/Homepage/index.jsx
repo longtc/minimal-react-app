@@ -1,9 +1,13 @@
 import React, { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 
+import { Trans } from "@lingui/macro";
+
 import { parse } from "../../../util/request";
 import { useRequest } from "../../../hook/use-request";
 import { getPokemonList } from "../../../api/pokemon/query";
+
+import { ChangeLanguage } from "../../component/change-language/ChangeLanguage.jsx";
 
 import { LoadingIndicator } from "../../component/animation/LoadingIndicator.jsx";
 import { ButtonPaging } from "../../component/paging/ButtonPaging.jsx";
@@ -48,7 +52,8 @@ export default function Homepage() {
 
   return (
     <section>
-      <h1 className="h2">Pokemon list</h1>
+      <ChangeLanguage />
+      <h1 className="h2"><Trans>Pokemon list</Trans></h1>
       {isLoading && <LoadingIndicator />}
       <ul className="pl-4 leading-tight">
         {pokemonListWithId.map(p => (
@@ -63,13 +68,13 @@ export default function Homepage() {
           paging={pagingButton.previous}
           setPaging={setPaging}
         >
-          Previous
+          <Trans>Previous</Trans>
         </ButtonPaging>}
         {pagingButton.next && <ButtonPaging
           paging={pagingButton.next}
           setPaging={setPaging}
         >
-          Next
+          <Trans>Next</Trans>
         </ButtonPaging>}
       </div>
     </section>

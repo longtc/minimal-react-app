@@ -33,6 +33,7 @@
 *.onlydata text
 *.php      text
 *.pl       text
+*.po       text
 *.py       text
 *.rb       text
 *.sass     text

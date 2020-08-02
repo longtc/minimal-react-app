@@ -61,36 +61,13 @@ else if (ENV === DEVELOPMENT) {
 }
 
 
-function basePlugins({ nomodule = false } = {}) {
+const cssModuleContext = path.resolve(__dirname, "app", "js");
+const cssModuleScopedName = "[hash:base64:5]";
+
+function baseBabelConfig({ nomodule = false }) {
   const browsers = nomodule ? ["ie 11"] : supportBrowsers;
 
-  const cssModuleContext = path.resolve(__dirname, "app", "js");
-  const cssModuleScopedName = "[hash:base64:5]";
-
-  const postcssPlugins = [];
-  if (ENV !== DEVELOPMENT) {
-    postcssPlugins.push(
-      postcssPresetEnv({
-        browsers: supportBrowsers,
-        stage: 3,
-        features: {
-          "nesting-rules": true,
-        },
-      }),
-      autoprefixer({
-        overrideBrowserslist: supportBrowsers,
-      }),
-      csso,
-    );
-  }
-
-  const babelConfig = {
-    exclude: [
-      /core-js/,
-      /regenerator-runtime/,
-      /node_modules/,
-    ],
-    babelHelpers: "runtime", // @rollup/plugin-babel specific
+  return {
     presets: [
       [
         "@babel/preset-env",
@@ -116,6 +93,7 @@ function basePlugins({ nomodule = false } = {}) {
         context: cssModuleContext,
         generateScopedName: cssModuleScopedName,
       }],
+      "macros",
       "transform-react-remove-prop-types",
       "@babel/plugin-syntax-dynamic-import",
       [
@@ -126,6 +104,36 @@ function basePlugins({ nomodule = false } = {}) {
       ],
     ],
   };
+}
+
+
+function baseRollupPlugins({ nomodule = false } = {}) {
+
+  const postcssPlugins = [];
+  if (ENV !== DEVELOPMENT) {
+    postcssPlugins.push(
+      postcssPresetEnv({
+        browsers: supportBrowsers,
+        stage: 3,
+        features: {
+          "nesting-rules": true,
+        },
+      }),
+      autoprefixer({
+        overrideBrowserslist: supportBrowsers,
+      }),
+      csso,
+    );
+  }
+
+  const babelConfigForRollup = Object.assign({
+    exclude: [
+      /core-js/,
+      /regenerator-runtime/,
+      /node_modules/,
+    ],
+    babelHelpers: "runtime", // @rollup/plugin-babel specific
+  }, baseBabelConfig({ nomodule }));
 
   const plugins = [
     postcss({
@@ -151,7 +159,7 @@ function basePlugins({ nomodule = false } = {}) {
     }),
     resolve(),
     replace(replaceOptions),
-    babel(babelConfig),
+    babel(babelConfigForRollup),
     commonjs({
       exclude: ["node_modules/**/es?(m)/**"],
       // include: "node_modules/**",
@@ -248,7 +256,7 @@ function watchFiles() {
       [MODULE_NAME]: `./app/js/${MODULE_NAME}.js`,
     },
     external: reactAppExternal,
-    plugins: basePlugins({ nomodule: false }),
+    plugins: baseRollupPlugins({ nomodule: false }),
     cache: watchCache,
     preserveEntrySignatures: false,
     preserveSymlinks: true, // Needed for `file:` entries in package.json.
@@ -324,7 +332,7 @@ let moduleBundleCache;
 
 const compileModuleBundle = async () => {
 
-  const plugins = basePlugins({ nomodule: false });
+  const plugins = baseRollupPlugins({ nomodule: false });
 
   const bundle = await rollup({
     input: {
@@ -364,7 +372,7 @@ const compileModuleBundle = async () => {
 let nomoduleBundleCache;
 
 const compileClassicBundle = async () => {
-  const plugins = basePlugins({ nomodule: true });
+  const plugins = baseRollupPlugins({ nomodule: true });
 
   const bundle = await rollup({
     input: {
@@ -429,3 +437,9 @@ gulp.task("javascript:watch", async () => {
     console.error(err);
   }
 });
+
+
+// export base babel config so lingui can use
+module.exports = {
+  baseBabelConfig,
+};

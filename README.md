@@ -20,3 +20,8 @@
 - Build for production
 
   `npm run build:prod`
+
+## Documentation
+
+- [Tailwind CSS](https://tailwindcss.com/docs/utility-first): How to style using Tailwind CSS.
+- [LinguiJS](https://lingui.js.org/tutorials/react.html#let-s-start): How to add i18n to an React app using LinguiJS.

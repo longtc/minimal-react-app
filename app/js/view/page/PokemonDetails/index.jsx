@@ -1,19 +1,20 @@
 import React, { useContext, useCallback } from "react";
 
-import { DialogContext } from "../../../reducer/dialog/dialog-context";
+import { AppContext } from "../../../context/app-context";
+
 import { DialogMessage } from "../../component/dialog/DialogMessage.jsx";
 
 import "./style.css";
 
 export default function PokemonDetails() {
 
-  const { setMessage } = useContext(DialogContext);
+  const { setDialogMessage } = useContext(AppContext);
 
   const openDialog = useCallback(() => {
-    setMessage(
+    setDialogMessage(
       "The dialog title",
       "And this is the content");
-  }, [setMessage]);
+  }, [setDialogMessage]);
 
   return (
     <section>

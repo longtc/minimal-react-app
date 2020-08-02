@@ -1,3 +1,6 @@
 node_modules
 build
 .vscode
+
+app/locales/_build/
+app/locales/**/*.js
