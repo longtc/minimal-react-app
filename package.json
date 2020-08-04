@@ -27,7 +27,7 @@
   "author": "Long Nguyen",
   "license": "MIT",
   "dependencies": {
-    "@babel/runtime": "^7.10.4",
+    "@babel/runtime": "^7.11.0",
     "@lingui/react": "^2.9.1",
     "@mdi/js": "^5.4.55",
     "@mdi/react": "^1.4.0",
@@ -39,13 +39,13 @@
     "react-router": "^5.2.0",
     "react-router-breadcrumbs-hoc": "^3.2.10",
     "react-router-dom": "^5.2.0",
-    "whatwg-fetch": "^3.2.0"
+    "whatwg-fetch": "^3.3.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.10.4",
+    "@babel/core": "^7.11.0",
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
-    "@babel/plugin-transform-runtime": "^7.10.4",
-    "@babel/preset-env": "^7.10.4",
+    "@babel/plugin-transform-runtime": "^7.11.0",
+    "@babel/preset-env": "^7.11.0",
     "@babel/preset-react": "^7.10.4",
     "@lingui/cli": "^2.9.1",
     "@lingui/macro": "^2.9.1",
@@ -53,7 +53,7 @@
     "@rollup/plugin-commonjs": "^14.0.0",
     "@rollup/plugin-node-resolve": "^8.1.0",
     "@rollup/plugin-replace": "^2.3.3",
-    "autoprefixer": "^9.8.5",
+    "autoprefixer": "^9.8.6",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.1.0",
     "babel-plugin-macros": "^2.8.0",
@@ -62,7 +62,7 @@
     "copyfiles": "^2.2.0",
     "core-js": "^3.6.4",
     "cross-env": "^7.0.2",
-    "eslint": "^7.4.0",
+    "eslint": "^7.6.0",
     "eslint-plugin-babel": "^5.3.1",
     "eslint-plugin-react": "^7.20.5",
     "fs-extra": "^9.0.0",
@@ -82,6 +82,6 @@
     "rollup-plugin-external-globals": "^0.5.0",
     "rollup-plugin-postcss": "^3.1.1",
     "rollup-plugin-terser": "^6.1.0",
-    "tailwindcss": "^1.6.0"
+    "tailwindcss": "^1.6.2"
   }
 }
