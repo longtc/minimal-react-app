@@ -408,7 +408,6 @@ const compileClassicBundle = async () => {
 gulp.task("javascript", async () => {
   try {
     const bundleTasks = [compileModuleBundle()];
-    await compileModuleBundle();
 
     if (ENV !== DEVELOPMENT) {
       bundleTasks.push(compileClassicBundle());
