@@ -3,14 +3,9 @@ const path = require("path");
 const gulp = require("gulp");
 const { rollup, watch } = require("rollup");
 
-// const react = require("react");
-// const reactDom = require("react-dom");
-// const reactIs = require("react-is");
-// const propTypes = require("prop-types");
-
 const { babel } = require("@rollup/plugin-babel");
 const replace = require("@rollup/plugin-replace");
-const { default: resolve } = require("@rollup/plugin-node-resolve");
+const { nodeResolve } = require("@rollup/plugin-node-resolve");
 const commonjs = require("@rollup/plugin-commonjs");
 const externalGlobals = require("rollup-plugin-external-globals");
 const { terser } = require("rollup-plugin-terser");
@@ -32,6 +27,7 @@ const {
   DEVELOPMENT,
   STAGING,
   PRODUCTION,
+  babelRuntimeVersion,
   supportBrowsers,
 } = require("./utils/constants");
 
@@ -99,7 +95,10 @@ function baseBabelConfig({ nomodule = false }) {
       [
         "@babel/plugin-transform-runtime",
         {
+          // do NOT duplicate the `corejs` config here
+          regenerator: false,
           useESModules: true,
+          version: `^${babelRuntimeVersion}`,
         },
       ],
     ],
@@ -157,21 +156,20 @@ function baseRollupPlugins({ nomodule = false } = {}) {
       autoModules: false,
       sourceMap: ENV === DEVELOPMENT,
     }),
-    resolve(),
+    nodeResolve({
+      browser: true,
+      extensions: [".js", ".jsx"],
+    }),
     replace(replaceOptions),
     babel(babelConfigForRollup),
     commonjs({
-      exclude: ["node_modules/**/es?(m)/**"],
+      exclude: [
+        "node_modules/**/es?(m)/**",
+      ],
+      // https://github.com/rollup/plugins/tree/master/packages/commonjs#esmexternals
+      esmExternals: true,
+      requireReturnsDefault: "auto",
       // include: "node_modules/**",
-      // namedExports: {
-      //   "node_modules/react-is/index.js": ["isValidElementType"]
-      // },
-      // namedExports: {
-      //   react: Object.keys(react),
-      //   "react-dom": Object.keys(reactDom),
-      //   "react-is": Object.keys(reactIs),
-      //   "prop-types": Object.keys(propTypes),
-      // },
     }),
     bundleName({
       name: nomodule ? NOMODULE_NAME : MODULE_NAME,

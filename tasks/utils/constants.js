@@ -6,6 +6,7 @@ exports.STAGING = "staging";
 
 exports.reactVersion = getPackageVersion(pkg.dependencies.react);
 exports.reactRouterDomVersion = getPackageVersion(pkg.dependencies["react-router-dom"]);
+exports.babelRuntimeVersion = getPackageVersion(pkg.dependencies["@babel/runtime"]);
 
 // these browsers support javascript Proxy
 exports.supportBrowsers = [
