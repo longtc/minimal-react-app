@@ -18,18 +18,17 @@ const autoprefixer = require("autoprefixer");
 
 const { bundleName } = require("./utils/rollup-plugin-bundle-name");
 
-const MODULE_NAME = "main-module";
-const NOMODULE_NAME = "main-nomodule";
-
 const config = require("../config.json");
 const { ENV } = require("../env");
 const {
   DEVELOPMENT,
-  STAGING,
-  PRODUCTION,
   babelRuntimeVersion,
   supportBrowsers,
 } = require("./utils/constants");
+
+
+const MODULE_NAME = "main-module";
+const NOMODULE_NAME = "main-nomodule";
 
 const reactAppGlobals = {
   react: "React",
@@ -42,19 +41,18 @@ const reactAppGlobals = {
 
 const reactAppExternal = Object.keys(reactAppGlobals);
 
-const replaceOptions = {
-  "process.env.NODE_ENV": JSON.stringify(ENV),
-};
 
-if (ENV === PRODUCTION) {
-  replaceOptions["http://localhost:REPLACE"] = config.apiProduction;
-}
-else if (ENV === STAGING) {
-  replaceOptions["http://localhost:REPLACE"] = config.apiStaging;
-}
-else if (ENV === DEVELOPMENT) {
-  replaceOptions["http://localhost:REPLACE"] = config.apiStaging;
-}
+const dotenvResult = require("dotenv").config({ debug: process.env.DEBUG });
+// Replace every string that starts with `REPLACE_`
+// with its corresponding env variable value
+const envReplaceOptions = Object.entries(dotenvResult.parsed).reduce((acc, cur) => {
+  if (cur[0].startsWith("REPLACE_"))
+    acc[cur[0]] = cur[1];
+  return acc;
+}, {});
+const replaceOptions = Object.assign({
+  "process.env.NODE_ENV": JSON.stringify(ENV),
+}, envReplaceOptions);
 
 
 const cssModuleContext = path.resolve(__dirname, "app", "js");
@@ -286,7 +284,7 @@ function watchFiles() {
         include: [
           "app/js/**/*.js?(x)",
           "app/js/**/*.css",
-          "config.json",
+          ".env",
         ],
         exclude: [
           "node_modules/**",
