@@ -11,7 +11,7 @@ import { routeConfig } from "./routeConfig";
 import { NotFound } from "./page/NotFound/index.jsx";
 
 import { PrivateRoute } from "./component/PrivateRoute.jsx";
-import { Breadcrumbs } from "./component/breadcrumbs.jsx";
+import { Breadcrumbs } from "./component/Breadcrumbs.jsx";
 
 export function App() {
   return (
@@ -43,7 +43,6 @@ function Routes() {
                 path={path}
                 isProtected={isProtected}
                 accessToken={user.accessToken}
-                exact
                 component={Component}
               />
             ))}
