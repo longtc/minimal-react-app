@@ -6,18 +6,21 @@ import { loadable } from "./component/Loadable.jsx";
 export const routeConfig = [
   {
     path: "/",
-    component: loadable(lazy(() => import("./page/Homepage/index.jsx"))),
+    exact: true,
+    component: loadable(lazy(() => import("./page/Homepage"))),
     isProtected: false,
     breadcrumb: "Homepage",
   },
   {
     path: "/pokemon",
+    exact: true,
     component: null,
     isProtected: false,
     breadcrumb: null,
   },
   {
     path: "/pokemon/:id",
+    exact: true,
     component: loadable(lazy(() => import("./page/PokemonDetails/index.jsx"))),
     isProtected: false,
     breadcrumb: "Pokemon Info",

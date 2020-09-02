@@ -37,9 +37,10 @@ function Routes() {
           <Breadcrumbs />
 
           <Switch>
-            {routeConfig.map(({ path, component: Component, isProtected }) => (
+            {routeConfig.map(({ path, exact, component: Component, isProtected }) => (
               <CustomRouter
                 key={path}
+                exact={exact}
                 path={path}
                 isProtected={isProtected}
                 accessToken={user.accessToken}
@@ -57,27 +58,23 @@ function Routes() {
 
 // ***************************************
 // private
-function CustomRouter({ path, component: Component, accessToken, isProtected }) {
+function CustomRouter({ component: Component, isProtected, accessToken, ...rest }) {
   if (isProtected) {
     return (
       <PrivateRoute
-        key={path}
         accessToken={accessToken}
-        path={path}
-        exact
         component={Component}
+        {...rest}
       />
     );
   }
 
   return (
     <Route
-      key={path}
-      path={path}
-      exact
       render={routeProps =>
         <Component {...routeProps} />
       }
+      {...rest}
     />
   );
 }
