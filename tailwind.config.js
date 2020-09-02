@@ -3,6 +3,9 @@ module.exports = {
     "./index.html",
     "./app/js/view/**/*.jsx",
   ],
+  future: {
+    removeDeprecatedGapUtilities: true,
+  },
   theme: {
     screens: {
       sm: "520px",
