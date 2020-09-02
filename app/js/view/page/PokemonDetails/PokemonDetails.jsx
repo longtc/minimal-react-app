@@ -20,7 +20,7 @@ export default function PokemonDetails() {
     <section>
       <h1 className="h3">This page is empty</h1>
       <p className="mb-3" styleName="some-paragraph">
-          This paragraph is just to show that you can use css module.
+        This paragraph is just to show that you can use css module.
       </p>
       <button onClick={openDialog}>Open dialog</button>
       <DialogMessage />
