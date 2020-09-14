@@ -21,7 +21,7 @@ export const routeConfig = [
   {
     path: "/pokemon/:id",
     exact: true,
-    component: loadable(lazy(() => import("./page/PokemonDetail"))),
+    component: loadable(lazy(() => import("./page/PokemonDetails"))),
     isProtected: false,
     breadcrumb: "Pokemon Info",
   },
