@@ -10,10 +10,6 @@ function copyPrecommit() {
     {
       overwrite: true,
     },
-    err => {
-      if (err) return console.error(err);
-      console.info("pre-commit was copied to .git/hooks/");
-    }
   );
 
   fse.chmod(path.resolve(cwd, ".git/hooks", "pre-commit"), 0o755,
