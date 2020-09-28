@@ -20,7 +20,7 @@ async function compileCss(srcPath) {
     atImport(),
     tailwindcss("./tailwind.config.js"),
     postcssPresetEnv({
-      browsers: supportBrowsers,
+      browsers: supportBrowsers.join(", "),
       stage: 3,
       features: {
         "nesting-rules": true,

@@ -110,7 +110,7 @@ function baseRollupPlugins({ nomodule = false } = {}) {
   if (ENV !== DEVELOPMENT) {
     postcssPlugins.push(
       postcssPresetEnv({
-        browsers: supportBrowsers,
+        browsers: supportBrowsers.join(", "),
         stage: 3,
         features: {
           "nesting-rules": true,
@@ -207,7 +207,7 @@ function manualChunks(id) {
     // NOTE: This isn't strictly necessary for this app, but it's included
     // as an example to show how to manually group common dependencies.
     if (name.match(/^react-?((dom)|(router)|(router-dom))?$/) ||
-    ["prop-types", "scheduler"].includes(name)) {
+      ["prop-types", "scheduler"].includes(name)) {
       return "react";
     }
 
@@ -302,9 +302,6 @@ function watchFiles() {
         watchCache = ev.result.cache;
       }
       if (ev.code === "ERROR") {
-        console.error(ev.error);
-      }
-      if (ev.code === "FATAL") {
         console.error(ev.error);
       }
     });

@@ -1,7 +1,9 @@
+import { Trans } from "@lingui/macro";
+import { mdiPokeball } from "@mdi/js";
+import Icon from "@mdi/react";
 import React, { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { Trans } from "@lingui/macro";
 
 import { parse } from "../../../util/request";
 import { useRequest } from "../../../hook/use-request";
@@ -55,9 +57,10 @@ export default function Homepage() {
       <ChangeLanguage />
       <h1 className="h2"><Trans>Pokemon list</Trans></h1>
       {isLoading && <LoadingIndicator />}
-      <ul className="pl-4 leading-tight">
+      <ul className="pl-4 leading-tight list-none">
         {pokemonListWithId.map(p => (
           <li key={p.name} className="h4 leading-normal capitalize hover:underline">
+            <Icon path={mdiPokeball} size={1} className="inline-block mr-1" />
             <Link className="no-underline" to={`/pokemon/${p.name}`}>{p.name}</Link>
           </li>
         ))}
