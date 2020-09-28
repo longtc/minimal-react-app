@@ -3,10 +3,11 @@ import React, { useContext, useCallback } from "react";
 import { AppContext } from "../../../context/app-context";
 
 import { DialogMessage } from "../../component/dialog/DialogMessage.jsx";
+import { PokemonDetails } from "../../module/Pokemon";
 
 import "./style.css";
 
-export default function PokemonDetails() {
+export function Pokemon({ match }) {
 
   const { setDialogMessage } = useContext(AppContext);
 
@@ -18,7 +19,7 @@ export default function PokemonDetails() {
 
   return (
     <section>
-      <h1 className="h3">This page is empty</h1>
+      <PokemonDetails name={match.params.pokemonName} />
       <p className="mb-3" styleName="some-paragraph">
         This paragraph is just to show that you can use css module.
       </p>

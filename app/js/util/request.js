@@ -124,12 +124,12 @@ export const memoGet = memoize({
  * @param {Object} param
  * @param {string} param.url - The URL we want to request,
  * or prepend it with `BASE_API_HOST` if starts with a slash `/`
- * @param {Object} param.params - The queries params
- * @param {Object} param.headers - The request headers
- * @param {boolean} param.useToken - If true, add the Bearer token to request header
- * @param {boolean} param.useCache - If true, cache the response by header + url
+ * @param {Object} [param.params] - The queries params
+ * @param {Object} [param.headers] - The request headers
+ * @param {boolean} [param.useToken] - If true, add the Bearer token to request header
+ * @param {boolean} [param.useCache] - If true, cache the response by header + url
  * @param {onSuccessCallback} param.onSuccess - The callback that handle the response
- * @param {onErrorCallback} param.onError - The callback that handle the error
+ * @param {onErrorCallback} [param.onError] - The callback that handle the error
  */
 export async function get({
   url, params,
@@ -175,11 +175,11 @@ export async function basicPost({
  * @param {Object} param
  * @param {string} param.url - The URL we want to request,
  * or prepend it with `BASE_API_HOST` if starts with a slash `/`
- * @param {Object} param.body - Payload of the request
- * @param {Object} param.headers - The request headers
- * @param {boolean} param.useToken - If true, add the Bearer token to request header
+ * @param {Object} [param.body] - Payload of the request
+ * @param {Object} [param.headers] - The request headers
+ * @param {boolean} [param.useToken] - If true, add the Bearer token to request header
  * @param {onSuccessCallback} param.onSuccess - The callback that handle the response
- * @param {onErrorCallback} param.onError - The callback that handle the error
+ * @param {onErrorCallback} [param.onError] - The callback that handle the error
  */
 export async function post({
   url,

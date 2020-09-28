@@ -13,14 +13,14 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: app/js/view/page/Homepage/index.jsx:74
+#: app/js/view/module/Pokemon/PokemonList.jsx:76
 msgid "Next"
 msgstr ""
 
-#: app/js/view/page/Homepage/index.jsx:53
+#: app/js/view/page/Homepage/Homepage.jsx:12
 msgid "Pokemon list"
 msgstr "Pokemon list"
 
-#: app/js/view/page/Homepage/index.jsx:68
+#: app/js/view/module/Pokemon/PokemonList.jsx:70
 msgid "Previous"
 msgstr ""

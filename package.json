@@ -13,10 +13,10 @@
     "copy-precommit": "node scripts/pre-commit.js",
     "copy-favicon": "copyfiles -f app/favicon/*.* build",
     "copy-static": "npm run copy-favicon",
-    "build": "npm run clean && gulp build",
+    "build": "npm run clean && npm run compile && gulp build",
     "build:stage": "cross-env NODE_ENV=staging npm run build && npm run copy-static",
     "build:prod": "cross-env NODE_ENV=production npm run build && npm run copy-static",
-    "watch": "npm run copy-libs && gulp watch",
+    "watch": "npm run compile && npm run copy-libs && gulp watch",
     "start": "gulp server",
     "postinstall": "npm run copy-precommit"
   },
