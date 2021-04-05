@@ -77,6 +77,7 @@ function baseBabelConfig({ nomodule = false }) {
       [
         "@babel/preset-react",
         {
+          runtime: "automatic",
           useBuiltIns: true,
           useSpread: false,
         },

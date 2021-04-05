@@ -1,5 +1,6 @@
 {
   "env": {
+    "jest": true,
     "browser": true,
     "es6": true,
     "node": true
@@ -38,7 +39,13 @@
     "indent": [2, 2, { "SwitchCase": 1 }],
     "key-spacing": [2, { "beforeColon": false, "afterColon": true }],
     "keyword-spacing": [2, { "before": true, "after": true }],
-    "max-len": ["error", { "code": 100, "tabWidth": 2, "ignoreUrls": true }],
+    "max-len": [0, {
+      "code": 100,
+      "tabWidth": 2,
+      "ignoreUrls": true,
+      "ignoreStrings": true,
+      "ignoreTemplateLiterals": true
+    }],
     "no-array-constructor": 2,
     "no-cond-assign": 2,
     "no-console": [2, { "allow": ["info", "warn", "error"] }],
@@ -96,6 +103,8 @@
     "template-tag-spacing": 2,
     "wrap-iife": [2, "inside"],
     "yoda": [2, "never", {"exceptRange": true}],
+    "react/jsx-uses-react": 0,
+    "react/react-in-jsx-scope": 0,
     "react/prop-types": 0
   }
 }
