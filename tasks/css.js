@@ -56,7 +56,6 @@ gulp.task("css", async () => {
     global.cssFileName = cssFileName; // this will be used to replace content in `index.html`
   }
   catch (err) {
-    // eslint-disable-next-line no-console
     console.error(err);
   }
 });

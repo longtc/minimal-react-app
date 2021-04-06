@@ -1,10 +1,10 @@
-import React, { createContext } from "react";
+import { createContext } from "react";
 
 import { useLocale } from "../store/locale/use-locale";
 import { useUser } from "../store/user/use-user";
 import { useDialog } from "../store/dialog/use-dialog";
 
-export const AppContext = createContext();
+export const AppContext = createContext({});
 
 export function AppContextProvider({ children }) {
 

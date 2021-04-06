@@ -1,5 +1,3 @@
-import React from "react";
-
 const SIZE = 44;
 
 export function LoadingIndicator({
