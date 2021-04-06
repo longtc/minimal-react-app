@@ -1,7 +1,7 @@
 import { Trans } from "@lingui/macro";
 import { mdiPokeball } from "@mdi/js";
-import Icon from "@mdi/react";
-import React, { useMemo, useState } from "react";
+import { Icon } from "@mdi/react";
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 
 

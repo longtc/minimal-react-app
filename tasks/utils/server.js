@@ -37,11 +37,9 @@ const server = http.createServer(async (req, res) => {
 
 });
 
-// eslint-disable-next-line no-unused-vars
 const start = async () => {
   await server.listen(PORT, async () => {
-    // eslint-disable-next-line no-console
-    console.log(`listening on ${PORT}`);
+    console.info(`listening on ${PORT}`);
   });
 };
 

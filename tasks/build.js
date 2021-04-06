@@ -4,11 +4,11 @@ require("./javascript");
 require("./html");
 require("./css");
 require("./image");
-require("./vendor");
+// require("./vendor");
 
 gulp.task("build", gulp.series(
   // "clean",
-  gulp.parallel("image", "css", "javascript", "vendor"),
+  gulp.parallel("image", "css", "javascript"),
   "html"
 ));
 

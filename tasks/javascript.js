@@ -31,12 +31,12 @@ const MODULE_NAME = "main-module";
 const NOMODULE_NAME = "main-nomodule";
 
 const reactAppGlobals = {
-  react: "React",
-  "react-dom": "ReactDOM",
-  "react-router-dom": "ReactRouterDOM",
+  // react: "React",
+  // "react-dom": "ReactDOM",
+  // "react-router-dom": "ReactRouterDOM",
   // `react-router-breadcrumbs-hoc` import from `react-router`,
   // we redirect it to ReactRouterDOM since it's basically the same package
-  "react-router": "ReactRouterDOM",
+  // "react-router": "ReactRouterDOM",
 };
 
 const reactAppExternal = Object.keys(reactAppGlobals);
@@ -51,6 +51,7 @@ const envReplaceOptions = Object.entries(dotenvResult.parsed).reduce((acc, cur) 
   return acc;
 }, {});
 const replaceOptions = Object.assign({
+  preventAssignment: true,
   "process.env.NODE_ENV": JSON.stringify(ENV),
 }, envReplaceOptions);
 
@@ -160,16 +161,18 @@ function baseRollupPlugins({ nomodule = false } = {}) {
       extensions: [".js", ".jsx"],
     }),
     replace(replaceOptions),
-    babel(babelConfigForRollup),
     commonjs({
+      include: /node_modules/,
       exclude: [
         "node_modules/**/es?(m)/**",
+        // /\/core-js\//,
       ],
       // https://github.com/rollup/plugins/tree/master/packages/commonjs#esmexternals
       esmExternals: true,
       requireReturnsDefault: "auto",
       // include: "node_modules/**",
     }),
+    babel(babelConfigForRollup),
     bundleName({
       name: nomodule ? NOMODULE_NAME : MODULE_NAME,
       globalKey: nomodule ? "nomoduleBundleName" : "moduleBundleName",
@@ -207,7 +210,7 @@ function manualChunks(id) {
     // Group react dependencies into a common "react" chunk.
     // NOTE: This isn't strictly necessary for this app, but it's included
     // as an example to show how to manually group common dependencies.
-    if (name.match(/^react-?((dom)|(router)|(router-dom))?$/) ||
+    if (name.match(/^react$/) ||
       ["prop-types", "scheduler"].includes(name)) {
       return "react";
     }
@@ -296,6 +299,9 @@ function watchFiles() {
 
     /* eslint-disable no-console */
     watcher.on("event", ev => {
+      if (ev.code === "START") {
+        console.info("Start bundling...");
+      }
       if (ev.code === "END") {
         console.info("Bundling completed!");
       }
@@ -306,7 +312,6 @@ function watchFiles() {
         console.error(ev.error);
       }
     });
-    // /* eslint-enable no-console */
 
   }
   catch (err) {
@@ -401,13 +406,17 @@ const compileClassicBundle = async () => {
 
 gulp.task("javascript", async () => {
   try {
-    const bundleTasks = [compileModuleBundle()];
 
     if (ENV !== DEVELOPMENT) {
-      bundleTasks.push(compileClassicBundle());
+      await Promise.all([
+        compileModuleBundle(),
+        compileClassicBundle(),
+      ]);
+    }
+    else {
+      await compileModuleBundle();
     }
 
-    await bundleTasks;
   }
   catch (err) {
     // Beep!

@@ -42,7 +42,6 @@ const getAsset = filename => {
   ensureManifest();
 
   if (!manifest[filename]) {
-    // eslint-disable-next-line no-console
     console.error(`Revisioned file for '${filename}' doesn't exist`);
   }
 

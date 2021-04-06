@@ -3,12 +3,6 @@ module.exports = {
     "./index.html",
     "./app/js/view/**/*.jsx",
   ],
-  future: {
-    defaultLineHeights: true,
-    purgeLayersByDefault: true,
-    removeDeprecatedGapUtilities: true,
-    standardFontWeights: true,
-  },
   theme: {
     screens: {
       sm: "520px",
@@ -19,12 +13,16 @@ module.exports = {
       transparent: "transparent",
       current: "currentColor",
 
-      black: "#1d1d1d",
-      white: "#fafafa",
+      black: {
+        DEFAULT: "#1d1d1d",
+      },
+      white: {
+        DEFAULT: "#fafafa",
+      },
 
       gray: {
         light: "#a0aec0",
-        default: "#718096",
+        DEFAULT: "#718096",
         // dark: "#2d3748",
       },
     },
@@ -40,6 +38,11 @@ module.exports = {
     extend: {},
   },
   variants: {
+    extend: {
+      // cursor: ["disabled"],
+      opacity: ["disabled"],
+      textColor: ["disabled"],
+    },
     accessibility: ["responsive", "focus"],
     alignContent: ["responsive"],
     alignItems: ["responsive"],

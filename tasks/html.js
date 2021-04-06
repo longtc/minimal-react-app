@@ -3,8 +3,6 @@ const { replace, after } = require("gulp-inject-string");
 
 const { ENV } = require("../env");
 const {
-  reactVersion,
-  reactRouterDomVersion,
   DEVELOPMENT,
 } = require("./utils/constants");
 
@@ -15,13 +13,13 @@ task("html", async () => {
     .pipe(replace("main-module.js", global.moduleBundleName || "main-module.js"));
 
   if (ENV !== DEVELOPMENT) {
-    stream = stream
-      .pipe(replace("/js/vendor/react-router-dom.js",
-        `/js/vendor/react-router-dom${reactRouterDomVersion}/react-router-dom.min.js`))
-      .pipe(replace("/js/vendor/react.development.js",
-        `/js/vendor/react${reactVersion}/react.production.min.js`))
-      .pipe(replace("/js/vendor/react-dom.development.js",
-        `/js/vendor/react-dom${reactVersion}/react-dom.production.min.js`));
+    // stream = stream
+    //   .pipe(replace("/js/vendor/react-router-dom.js",
+    //     `/js/vendor/react-router-dom${reactRouterDomVersion}/react-router-dom.min.js`))
+    //   .pipe(replace("/js/vendor/react.development.js",
+    //     `/js/vendor/react${reactVersion}/react.production.min.js`))
+    //   .pipe(replace("/js/vendor/react-dom.development.js",
+    //     `/js/vendor/react-dom${reactVersion}/react-dom.production.min.js`));
   }
   else {
     stream = stream
